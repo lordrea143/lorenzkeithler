@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automotive Cars Dealership</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('images/background.jpg') no-repeat center center/cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px 40px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img {
+      width: 60px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6600;
+    }
+
+    /* HERO SECTION */
+    section {
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .featured-car img {
+      width: 400px;
+      border-radius: 10px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    }
+
+    .featured-car img:hover {
+      transform: scale(1.05);
+    }
+
+    .car-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .car-card {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 10px;
+      width: 240px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .car-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+
+    .car-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* PROMO SECTION */
+    .promo {
+      position: relative;
+      height: 90vh;
+      background: url('images/carscenery.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .promo-text h1 {
+      font-size: 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      width: 70%;
+      max-width: 600px;
+    }
+
+    .discount-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+      border-radius: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    .discount-box button {
+      margin-top: 10px;
+      background: red;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .discount-box button:hover {
+      background: #ff6600;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px red; }
+      50% { box-shadow: 0 0 20px red; }
+      100% { box-shadow: 0 0 5px red; }
+    }
+
+    /* LOGIN MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .modal-content {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      width: 350px;
+      color: white;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .modal-content input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #ff6600;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .modal-content a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .featured-car img {
+        width: 90%;
+      }
+
+      .promo-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .discount-box {
+        width: 80%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="images/dealership.jpg" alt="Dealership Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#promo">Offers</a></li>
+        <li><a href="#" id="loginBtn">Log In</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="hero">
+    <h1>Automotive Cars Dealership</h1>
+
+    <div class="featured-car">
+      <img src="images/bugatti.jpg" alt="Bugatti">
+      <h2>BUGATTI</h2>
+    </div>
+
+    <div class="car-grid">
+      <div class="car-card">
+        <img src="images/bmw.jpg" alt="BMW">
+        <h3>BMW</h3>
+      </div>
+      <div class="car-card">
+        <img src="images/lamboghini.jpg" alt="Lamborghini">
+        <h3>LAMBORGINI</h3>
+      </div>
+      <div class="car-card">
+        <img src="images/toyota.jpg" alt="Toyota">
+        <h3>TOYOTA</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO SECTION -->
+  <section id="promo" class="promo">
+    <div class="promo-text">
+      <h1>Search and find the perfect vehicles for you</h1>
+    </div>
+    <div class="discount-box">
+      <h2>20% Discount</h2>
+      <button id="callNow">CALL NOW</button>
+    </div>
+  </section>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Automotive Cars Dealership</h2>
+      <form>
+        <input type="text" placeholder="Enter Username"><br>
+        <input type="password" placeholder="Enter Password"><br>
+        <button type="submit">LOG IN</button>
+        <a href="#">Forgot Password?</a>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Open login modal
+    const modal = document.getElementById("loginModal");
+    const loginBtn = document.getElementById("loginBtn");
+    const closeBtn = document.getElementById("closeModal");
+
+    loginBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Call now button
+    document.getElementById("callNow").addEventListener("click", () => {
+      alert("📞 Thank you for your interest! Call us now at +1 (800) 555-CARZ");
+    });
+  </script>
+
+</body>
+</html>
